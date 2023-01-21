@@ -18,6 +18,9 @@ class Task extends CI_Controller
         $api = new Apicall;
         $data['reddit'] = $api->reddit_api();
         // $data['time'] = $api->utc_converter();
+        $data['count'] = $api->count();
+        // $data['time'] = $api->utc_converter();
+
 
 
         $this->load->library('table');
@@ -31,5 +34,26 @@ class Task extends CI_Controller
         // $data['weather'] = $api->weather_api();
         // $data['time'] = $api->utc_converter();
         $this->load->view('task');
+    }
+
+    public function count()
+    {
+        $api = new Apicall;
+        $data['count'] = $api->count();
+        // $data['time'] = $api->utc_converter();
+        $this->load->view('task', $data);
+    }
+    public function xml_download()
+    {
+        include_once __DIR__ . '../../models/Task.php';
+
+        // $api = new Apicall;
+        // $data['weather'] = $api->weather_api();
+        // $data['time'] = $api->utc_converter();
+
+        $result = $this->load->model('task_model');
+        $result = $result->load->method('count_analytics');
+        // echo json_encode($result);
+        $this->load->view('document_v', $result);
     }
 }

@@ -85,7 +85,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="https://openlayers.org/en/v3.20.1/css/ol.css" type="text/css">
 </head>
 
 <body>
@@ -201,6 +201,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
 
                 </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body" id="show">
+
+                            <h3 id="analy"><?php echo $count; ?></h3>
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="row">
 
@@ -210,6 +220,35 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="card-body" id="show">
                             <input type="file" name="" id="img">
                             <input type="button" value="upload" id="upload">
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-4">
+                    <div class="card">
+
+                        <div class="card-body" id="show">
+                            <a class="skiplink" href="#map">Go to map</a>
+                            <div id="map" class="map" tabindex="0"></div>
+                            <button id="zoom-out">Zoom out</button>
+                            <button id="zoom-in">Zoom in</button>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-4">
+                    <div class="card">
+
+                        <div class="card-body" id="airport">
+                            <select type="" name="airport" id="airport" width="80%">
+                                <option value="">AIRPORTS</option>
+                                <option value=""></option>
+                            </select>
+                            <!-- <input type="button" value="upload" id="upload"> -->
 
                         </div>
                     </div>
@@ -225,6 +264,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
         </script>
+        <script src="https://openlayers.org/en/v3.20.1/build/ol.js"></script>
+
         <script>
             $('.input-group-append').on('click', function(e) {
                 e.preventDefault();

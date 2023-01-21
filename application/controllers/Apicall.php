@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-// include_once __DIR__ . '../../models/Task_model.php';
 
 
 class Apicall extends CI_Controller
@@ -41,15 +40,19 @@ class Apicall extends CI_Controller
     }
     public function analytics()
     {
-        // $model = new Task_model;
+        include_once __DIR__ . '../../models/Task_model.php';
 
-        $result = $this->load->model('task_model');
-        $result = $result->load->method('insert_analytics');
+        $model = new Task_model;
+        $result = $model->insert_analytics();
+
+        // $result = $this->load->model('task_model');
+        // $result = $result->load->method('insert_analytics');
         echo json_encode($result);
     }
     public function file()
     {
         // $model = new Task_model;
+        include_once __DIR__ . '../../models/Task_model.php';
 
         $result = $this->load->model('task_model');
         $result = $result->load->method('insert_file');
@@ -57,11 +60,11 @@ class Apicall extends CI_Controller
     }
     public function count()
     {
-        // include_once __DIR__ . '../../models/Task.php';
+        include_once __DIR__ . '../../models/Task_model.php';
         // $model = new Task_model;
 
-        $result = $this->load->model('task_model');
-        $result = $result->load->method('count_analytics');
+        $res = $this->load->model('task_model');
+        $result = $res->count_analytics();
         echo json_encode($result);
     }
 }
