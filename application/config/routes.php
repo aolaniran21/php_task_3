@@ -53,6 +53,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 $route['v1/api/time'] = 'Apicall/utc_converter';
 $route['v1/api/weather'] = 'Apicall/weather_api';
 $route['v1/api/analytics'] = 'Apicall/analytics';
+$route['v1/api/count'] = 'Apicall/count';
+$route['v1/api/upload'] = 'Apicall/file';
 $route['/airport'] = 'task/airport';
 
 // $route['default_controller'] = 'welcome';

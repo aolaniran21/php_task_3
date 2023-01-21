@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+// include_once __DIR__ . '../../models/Task_model.php';
+
+
 class Apicall extends CI_Controller
 {
 
@@ -38,26 +41,27 @@ class Apicall extends CI_Controller
     }
     public function analytics()
     {
-        include_once __DIR__ . '../../models/Task.php';
         // $model = new Task_model;
 
-        $result = $this->load->model('Task');
-        $result->load->method('insert_analytics');
+        $result = $this->load->model('task_model');
+        $result = $result->load->method('insert_analytics');
         echo json_encode($result);
+    }
+    public function file()
+    {
+        // $model = new Task_model;
 
-        // if ($this->input->get('term')) {
-        //     $custom_query = ' `airport` LIKE "%' .  $this->input->get('term', true)  . '%" ';
-        //     $analy = $this->load->database->insert('year')->from('analytics')->where($custom_query)->get()->result_array();
+        $result = $this->load->model('task_model');
+        $result = $result->load->method('insert_file');
+        echo json_encode($result);
+    }
+    public function count()
+    {
+        // include_once __DIR__ . '../../models/Task.php';
+        // $model = new Task_model;
 
-
-        //     $response_list = array();
-        //     foreach ($data_list as $d_key => $_data) {
-        //         array_push($response_list, array('text' => $_data['year'], 'id' => $_data['year']));
-        //     }
-
-        //     $output['results'] = $response_list;
-        //     echo json_encode($output);
-        //     exit();
-        // }
+        $result = $this->load->model('task_model');
+        $result = $result->load->method('count_analytics');
+        echo json_encode($result);
     }
 }

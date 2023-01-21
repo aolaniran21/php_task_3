@@ -11,7 +11,7 @@ setInterval(function(){
             $('#pak').text(res['pakistan'])
             // console.log(res);
         } 
-    })},1000)
+    })},10000000000)
 setInterval(function(){
     $.ajax({
         url: ajaxURLPath + 'v1/api/weather',
@@ -23,7 +23,18 @@ setInterval(function(){
             $('#temp').text(res['temp_c'])
             // console.log(res); 
         } 
-    })},1000)
+    })},10000000000)
+setInterval(function(){
+    $.ajax({
+        url: ajaxURLPath + 'v1/api/count',
+        dataType: 'json',
+        type: "GET",
+        success: function (res) 
+        {  
+            // $('#count').text(res['temp_c'])
+            console.log(res); 
+        } 
+    })},1000000000)
 
 
     
@@ -46,14 +57,18 @@ setInterval(function(){
     //     }
     // }); 
 
-    $('.card').click(()=>{
-        console.log('well');
+    $('div.card').click((e)=>{
+        // var id = e.target.id;
+        var id = this.id;
+        // var id = $(this).attr('id');
+        console.log(id);
         $.ajax({
             url: ajaxURLPath + 'v1/api/analytics',
             // dataType: 'json',
             type: "POST",
             data: {
                 click : 1,
+                type: id,
                 browser: jQuery.browser
             },
             success: function (res) 
@@ -62,3 +77,51 @@ setInterval(function(){
             } 
         })
     })
+
+    
+
+    $('#bill').click((e)=>{
+        
+        var change = moneyChanger(parseInt($('#count').val()))
+        console.log(change)
+        Object.keys(change).forEach(key => {
+            // console.log(key, obj[key]);
+          
+            $('#show').append('<h3>'+key+ ' * ' + change[key] +'</h3>')
+
+            
+         }) 
+
+    })
+    function moneyChanger(money){
+        bills = [0.01, 0.05, 5, 20]
+        if (bills[0] < bills[1]) bills.reverse();
+        const change = {}
+        bills.forEach(b => {
+           change[b] = Math.floor(money/b)
+           money = money - (b*change[b])
+        }) 
+        return change
+    }
+    
+    
+    // const change = moneyChanger(2507.345)
+
+    $('#upload').on('click', function() {
+        var file_data = $('#img').prop('files')[0];   
+        var form_data = new FormData();                  
+        form_data.append('file', file_data);
+        alert(form_data);                             
+        $.ajax({
+            url: ajaxURLPath + 'v1/api/upload', // <-- point to server-side PHP script 
+            dataType: 'text',  // <-- what to expect back from the PHP script, if anything
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,                         
+            type: 'post',
+            success: function(response){
+                alert(file_data); // <-- display response from the PHP script, if any
+            }
+         });
+    });

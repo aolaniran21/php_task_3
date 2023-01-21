@@ -84,6 +84,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
         }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -95,7 +97,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <div id="body">
             <div class="row mt-2 mb-2">
                 <div class="col-3">
-                    <div class="card">
+                    <div class="card" id="weath">
                         <img id="weather" class="card-img-top" src="" alt="Card image cap">
                         <div class="card-body">
                             <!-- <img id="weather" src="" alt="" srcset="" height="200" width="200"> -->
@@ -105,7 +107,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                 </div>
                 <div class="col-2">
-                    <div class="card">
+                    <div class="card" id="ldn_time">
                         <div class="card-body">
                             <h3 id="ldn"></h3>
 
@@ -114,7 +116,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                 </div>
                 <div class="col-2">
-                    <div class="card">
+                    <div class="card" id="est_time">
                         <div class="card-body">
                             <h3 id="est"></h3>
 
@@ -124,7 +126,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                 </div>
                 <div class="col-2">
-                    <div class="card">
+                    <div class="card" id="nig_time">
                         <div class="card-body">
                             <h3 id="nig"></h3>
 
@@ -134,7 +136,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                 </div>
                 <div class="col-2">
-                    <div class="card">
+                    <div class="card" id="pak_time">
                         <div class="card-body">
                             <h3 id="pak"></h3>
 
@@ -165,7 +167,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
             </div> -->
             <div class="row">
                 <div class="col-4">
-                    <div class="card">
+                    <div class="card" id="reddit">
                         <div class="card-body">
                             <?php
                             $this->table->set_caption('Reddit');
@@ -185,7 +187,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                     </div>
                 </div>
+                <div class="col-4">
+                    <div class="card">
 
+                        <input type="text" name="" id="count">
+                        <input type="button" value="count" id="bill">
+
+
+                        <div class="card-body" id="show">
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-4">
+                    <div class="card">
+
+                        <div class="card-body" id="show">
+                            <input type="file" name="" id="img">
+                            <input type="button" value="upload" id="upload">
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
