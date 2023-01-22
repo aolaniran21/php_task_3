@@ -108,22 +108,23 @@ setInterval(function(){
     // const change = moneyChanger(2507.345)
 
     $('#upload').on('click', function() {
-        var file_data = $('#img').prop('files')[0];   
-        var form_data = new FormData();                  
-        form_data.append('file', file_data);
-        alert(form_data);                             
-        $.ajax({
-            url: ajaxURLPath + 'v1/api/upload', // <-- point to server-side PHP script 
-            dataType: 'text',  // <-- what to expect back from the PHP script, if anything
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,                         
-            type: 'post',
-            success: function(response){
-                alert(file_data[0]); // <-- display response from the PHP script, if any
-            }
-         });
+      var file_data = $('#img').val();
+      alert(file_data);
+      var form_data = new FormData();
+      form_data.append('file', file_data[2]);
+      alert(form_data['file']);
+      $.ajax({
+        url: ajaxURLPath + 'v1/api/upload', // <-- point to server-side PHP script
+        dataType: 'text',  // <-- what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(response){
+          alert(file_data[5]); // <-- display response from the PHP script, if any
+        }
+      });
     });
 
     var map = new ol.Map({

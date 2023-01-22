@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = '';
+$config['base_url'] = 'http://localhost:9020';
 
 /*
 |--------------------------------------------------------------------------
@@ -116,7 +116,7 @@ $config['enable_hooks'] = FALSE;
 | https://codeigniter.com/userguide3/general/creating_libraries.html
 |
 */
-$config['subclass_prefix'] = 'Manaknight_';
+$config['subclass_prefix'] = 'My_';
 
 /*
 |--------------------------------------------------------------------------

@@ -1,6 +1,7 @@
-<?php defined('BASEPATH') or exit('No direct script access allowed');
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
-
+include __DIR__ . '/../../system/core/Model.php';
 class Task_model extends CI_Model
 {
 
@@ -27,10 +28,10 @@ class Task_model extends CI_Model
     public function insert_file()
     {
 
-        $image = trim(xss_clean($this->input->post('image')));
+        $image = trim($this->input->post('file'));
 
         $data = array(
-            'image' => $image,
+            'file' => $image,
         );
 
         $this->db->insert('file', $data);
@@ -39,14 +40,15 @@ class Task_model extends CI_Model
     }
     public function count_analytics()
     {
-        // $result = $this->db->select('count(id) as count')->from('analytics')->get()->row_array();
+        $result = $this->db->select('count(id) as count')->from('analytics')->get()->row_array();
         // if ($result) {
         //     $data['week'] = $result['count'];
         // }
 
-
+        // $query = $this->db->get('analytics', 10);
+        // return $query->result();
         // return $data;
-        echo $this->db->count_all('analytics');
+        return $this->db->select('*')->from('analytics')->count_all_results();
     }
 
     public function xml()
@@ -54,14 +56,14 @@ class Task_model extends CI_Model
 
         $data   = [];
         $this->db->select('*');
-        $query  =    $this->db->get('xml');
+        $query  =    $this->db->get('analytics');
         $result    =    $query->result_array();
         if (isset($result)) {
 
             $data['xml']    =    $result;
         }
         if (isset($_POST['submit'])) {
-            $query  =    $this->db->get('xml');
+            $query  =    $this->db->get('analytics');
             if ($query->num_rows() > 0) {
 
                 $config = array($config = array(

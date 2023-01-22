@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-include_once 'Apicall.php';
+include 'Apicall.php';
 
 class Task extends CI_Controller
 {
